@@ -1,0 +1,38 @@
+{% extends "collab/base/base.html" %}
+
+{% block content %}
+
+<div class="container">
+<div class="card">
+    <div class="card-header">
+        <h1>{{ club.name }}</h1>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ club.desc }}</p>
+        <p>{{ club.text|safe }}</p><br>
+
+        <p>Требуются в команду: {{ club.required_team }}</p><br>
+
+        <p>Теги:
+        {% for tag in club.tags.all %}
+        {{ tag.name }}
+        {% endfor %}</p>
+
+        <br>
+        <h2>Автор</h2>
+        <p>Имя: {{ club.author.first_name }}</p>
+        <p>Фамилия: {{ club.author.last_name }}</p>
+        <p>Возраст: {{ club.author.age }}</p>
+        <p>Город: {{ club.author.city }}</p>
+        <a class="btn btn-secondary" href="{% url 'collab:send_msg' slug=club.slug pk=club.author.pk %}">Написать автору</a>
+
+        <br><br>
+        <a class="btn btn-primary" href="{% url 'collab:join_club' slug=club.slug %}">Подать заявку на участие</a>
+        <br><br>
+        <a href="{% url 'collab:list_confirm_team' slug=club.slug %}">Подтвердить участников</a>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}

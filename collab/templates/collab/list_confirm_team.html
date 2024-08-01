@@ -1,0 +1,25 @@
+{% extends "collab/base/base.html" %}
+
+
+{% block content %}
+
+
+{% for person in request_team %}
+
+<div class="container">
+<div class="alert alert-primary" role="alert">
+    <p>{{ person.username }}</p>
+    <p>{{ person.first_name }}</p>
+    <p>{{ person.last_name }}</p>
+    <p>{{ person.email }}</p>
+    <p>{{ person.age }}</p>
+    <p>{{ person.city }}</p>
+    <p>{{ person.skills }}</p>
+    <a href="{% url 'collab:send_msg' slug=club.slug pk=person.pk %}" class="btn btn-secondary">Написать</a><br><br>
+    <a href="#" class="btn btn-success">Подтвердить</a>
+</div>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'collab/base/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2> Профиль</h2>
+<p>{{ request.user}}</p>
+<p>{{ request.user.first_name}}</p>
+<p>{{ request.user.last_name}}</p>
+<p>{{ request.user.email}}</p>
+<p>{{ request.user.age}}</p>
+<p>{{ request.user.city}}</p>
+
+<h2>Мои клубы:</h2>
+    {% for club in my_clubs %}
+    <a href="{{ club.get_absolute_url }}">{{ club.name }}</a><br>
+    {% endfor %}
+
+    <br>
+<h2>Телеграм бот</h2>
+<a href="https://t.me/startup_clubs_bot?start={{telegram_verif_code}}" target="_blank">Ссылка на телеграм бот</a>
+
+</div>
+{% endblock %}
+

@@ -1,0 +1,15 @@
+{% extends "collab/base/base.html" %}
+
+
+{% block content %}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "collab/base/base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for club in all_clubs %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <a class="card-title text-decoration-none" href="{{ club.get_absolute_url }}">{{ club.name }}</a><br>
+                    <a class="card-text text-decoration-none" href="{{ club.get_absolute_url }}">{{ club.desc|truncatechars:150 }}</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">
+                        {% for tag in club.tags.all %}
+                        {{tag.name}}{% if not forloop.last %} {% endif %}
+                        {% endfor %}
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
